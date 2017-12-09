@@ -356,6 +356,9 @@
                     isCrash =
                         false;
                 }
+                if (speed < 1 && speed > -1) {
+                    engineSound.pause();
+                }
             }
 
             requestAnimationFrame(animate);
@@ -363,6 +366,14 @@
         }
         function myclamp(x, lo, hi) {
             return x < lo ? lo : (x > hi ? hi : x);
+        }
+
+        engineSound = new Audio('engine.wav');
+        setInterval(playEngineSound, 4000);
+        function playEngineSound() {
+            if (speed > 1 || speed < -1) {
+                engineSound.play();
+            }
         }
         function render() {
             var WW = window.innerWidth;
